@@ -65,6 +65,36 @@ def assistant(command):
         else:
             pass
 
+    elif 'google' in command:
+        reg_ex = re.search('google (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            url = 'https://www.google.com/search?q=' + domain
+            webbrowser.open(url)
+            print('Done!')
+        else:
+            pass
+
+    elif 'duck' in command:
+        reg_ex = re.search('duck (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            url = 'https://duckduckgo.com/?q=' + domain
+            webbrowser.open(url)
+            print('Done!')
+        else:
+            pass
+
+    elif 'youtube' in command:
+        reg_ex = re.search('youtube (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            url = 'https://www.youtube.com/results?search_query=' + domain
+            webbrowser.open(url)
+            print('Done!')
+        else:
+            pass
+
     elif 'what\'s up' in command:
         talkToMe('Just doing my thing')
     elif 'joke' in command:
