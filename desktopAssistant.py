@@ -66,7 +66,11 @@ def assistant(command,lastCommand):
         reg_ex = re.search('repeat (.+)', command)
         if reg_ex:
             domain = reg_ex.group(1)
-            counter = +int(domain)
+            counter=0
+            try:
+                counter = +int(domain)
+            except ValueError:
+                pass
             while counter>0:
                 assistant(lastCommand,lastCommand)
                 counter=counter-1
