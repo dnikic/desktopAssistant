@@ -6,6 +6,10 @@ import webbrowser
 import smtplib
 import requests
 from weather import Weather
+import pyautogui
+import time
+
+
 
 def talkToMe(audio):
     "speaks audio passed as argument"
@@ -85,6 +89,135 @@ def assistant(command):
         else:
             pass
 
+    elif 'write' in command:
+        reg_ex = re.search('write (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.typewrite(''+domain,0.1)
+            print('Written!')
+        else:
+            pass
+
+
+    
+    elif 'keyboard' in command:
+        reg_ex = re.search('keyboard (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.typewrite([''+domain],1)
+            print('Pressed!')
+        else:
+            pass
+
+    elif 'hotkey control alternative shift' in command:
+        reg_ex = re.search('hotkey control alternative shift (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.hotkey('ctrl','alt','shift',''+domain)
+            print('Ctrl-Alt-Shift hotkey Pressed!'+domain)
+        else:
+            pass
+
+    elif 'hotkey ctrl alternative shift' in command:
+        reg_ex = re.search('hotkey ctrl alternative shift (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.hotkey('ctrl','alt','shift',''+domain)
+            print('Ctrl-Alt-Shift hotkey Pressed!'+domain)
+        else:
+            pass
+
+
+    elif 'hotkey control alternative' in command:
+        reg_ex = re.search('hotkey control alternative (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.hotkey('ctrl','alt','shift',''+domain)
+            print('Ctrl-Alt hotkey Pressed!'+domain)
+        else:
+            pass
+
+    elif 'hotkey ctrl alternative' in command:
+        reg_ex = re.search('hotkey ctrl alternative (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.hotkey('ctrl','alt',''+domain)
+            print('Ctrl-Alt hotkey Pressed!'+domain)
+        else:
+            pass
+    
+    elif 'hotkey control shift' in command:
+        reg_ex = re.search('hotkey control shift (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.hotkey('ctrl','shift',''+domain)
+            print('Ctrl-Shift hotkey Pressed!'+domain)
+        else:
+            pass
+
+    elif 'hotkey ctrl shift' in command:
+        reg_ex = re.search('hotkey ctrl shift (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.hotkey('ctrl','shift',''+domain)
+            print('Ctrl-Shift hotkey Pressed!'+domain)
+        else:
+            pass
+
+    elif 'hotkey alternative shift' in command:
+        reg_ex = re.search('hotkey alternative shift (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.hotkey('alt','shift',''+domain)
+            print('Alt-Shift hotkey Pressed!'+domain)
+        else:
+            pass
+
+
+    elif 'hotkey shift' in command:
+        reg_ex = re.search('hotkey shift (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.hotkey('shift',''+domain)
+            print('Shift hotkey Pressed!'+domain)
+        else:
+            pass
+
+    elif 'hotkey control' in command:
+        reg_ex = re.search('hotkey control (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.hotkey('ctrl',''+domain)
+            print('Ctrl hotkey Pressed!'+domain)
+        else:
+            pass
+
+    elif 'hotkey alternative' in command:
+        reg_ex = re.search('hotkey alternative (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            pyautogui.hotkey('alt',''+domain)
+            print('Alt hotkey Pressed!'+domain)
+        else:
+            pass
+
+
+    elif 'pause toggle' in command:
+        pyautogui.typewrite(['space'],1)
+        talkToMe('space Pressed!')
+
+    elif 'keyboard next' in command:
+        pyautogui.typewrite(['tab'],1)
+        talkToMe('tab Pressed!')
+
+    elif 'keyboard previous' in command:
+        pyautogui.typewrite(['shift','tab'],1)
+        talkToMe('Shift-tab Pressed!')
+
+    elif 'pause youtube' in command:
+        pyautogui.typewrite(['k'],1)
+        talkToMe('K Pressed!')
+
     elif 'youtube' in command:
         reg_ex = re.search('youtube (.+)', command)
         if reg_ex:
@@ -94,6 +227,11 @@ def assistant(command):
             print('Done!')
         else:
             pass
+
+    elif 'close window' in command:
+        pyautogui.hotkey('alt','f4')
+        talkToMe('Alt-F4 Pressed!')
+
 
     elif 'what\'s up' in command:
         talkToMe('Just doing my thing')
