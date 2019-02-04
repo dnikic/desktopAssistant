@@ -10,7 +10,6 @@ import pyautogui
 import time
 
 
-
 def talkToMe(audio):
     "speaks audio passed as argument"
 
@@ -47,8 +46,33 @@ def myCommand():
     return command
 
 
-def assistant(command):
+def assistant(command,lastCommand):
     "if statements for executing commands"
+
+ 
+
+    if 'repeat once' in command:
+        command=lastCommand
+        print(lastCommand)
+
+#    if 'repeat 5' in command:
+#        assistant(lastCommand,lastCommand)
+#        assistant(lastCommand,lastCommand)
+#        assistant(lastCommand,lastCommand)
+#        print('kikiriki')
+#        print ('mjau mjau')
+#
+    elif 'repeat' in command:
+        reg_ex = re.search('repeat (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            counter = +int(domain)
+            while counter>0:
+                assistant(lastCommand,lastCommand)
+                counter=counter-1
+            lastCommand=command
+        else:
+            pass
 
     if 'open reddit' in command:
         reg_ex = re.search('open reddit (.*)', command)
@@ -57,6 +81,7 @@ def assistant(command):
             subreddit = reg_ex.group(1)
             url = url + 'r/' + subreddit
         webbrowser.open(url)
+        lastCommand=command
         print('Done!')
 
     elif 'open website' in command:
@@ -66,6 +91,7 @@ def assistant(command):
             url = 'https://www.' + domain
             webbrowser.open(url)
             print('Done!')
+            lastCommand=command
         else:
             pass
 
@@ -76,6 +102,7 @@ def assistant(command):
             url = 'https://www.google.com/search?q=' + domain
             webbrowser.open(url)
             print('Done!')
+            lastCommand=command
         else:
             pass
 
@@ -85,6 +112,7 @@ def assistant(command):
             domain = reg_ex.group(1)
             url = 'https://duckduckgo.com/?q=' + domain
             webbrowser.open(url)
+            lastCommand=command
             print('Done!')
         else:
             pass
@@ -95,9 +123,9 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.typewrite(''+domain,0.1)
             print('Written!')
+            lastCommand=command
         else:
             pass
-
 
     
     elif 'keyboard' in command:
@@ -106,6 +134,7 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.typewrite([''+domain],1)
             print('Pressed!')
+            lastCommand=command
         else:
             pass
 
@@ -115,6 +144,7 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.hotkey('ctrl','alt','shift',''+domain)
             print('Ctrl-Alt-Shift hotkey Pressed!'+domain)
+            lastCommand=command
         else:
             pass
 
@@ -124,6 +154,7 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.hotkey('ctrl','alt','shift',''+domain)
             print('Ctrl-Alt-Shift hotkey Pressed!'+domain)
+            lastCommand=command
         else:
             pass
 
@@ -134,6 +165,7 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.hotkey('ctrl','alt','shift',''+domain)
             print('Ctrl-Alt hotkey Pressed!'+domain)
+            lastCommand=command
         else:
             pass
 
@@ -143,6 +175,7 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.hotkey('ctrl','alt',''+domain)
             print('Ctrl-Alt hotkey Pressed!'+domain)
+            lastCommand=command
         else:
             pass
     
@@ -152,6 +185,7 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.hotkey('ctrl','shift',''+domain)
             print('Ctrl-Shift hotkey Pressed!'+domain)
+            lastCommand=command
         else:
             pass
 
@@ -161,6 +195,7 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.hotkey('ctrl','shift',''+domain)
             print('Ctrl-Shift hotkey Pressed!'+domain)
+            lastCommand=command
         else:
             pass
 
@@ -170,6 +205,7 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.hotkey('alt','shift',''+domain)
             print('Alt-Shift hotkey Pressed!'+domain)
+            lastCommand=command
         else:
             pass
 
@@ -180,6 +216,7 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.hotkey('shift',''+domain)
             print('Shift hotkey Pressed!'+domain)
+            lastCommand=command
         else:
             pass
 
@@ -189,6 +226,7 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.hotkey('ctrl',''+domain)
             print('Ctrl hotkey Pressed!'+domain)
+            lastCommand=command
         else:
             pass
 
@@ -198,24 +236,29 @@ def assistant(command):
             domain = reg_ex.group(1)
             pyautogui.hotkey('alt',''+domain)
             print('Alt hotkey Pressed!'+domain)
+            lastCommand=command
         else:
             pass
 
 
     elif 'pause toggle' in command:
         pyautogui.typewrite(['space'],1)
+        lastCommand=command
         talkToMe('space Pressed!')
 
     elif 'keyboard next' in command:
         pyautogui.typewrite(['tab'],1)
+        lastCommand=command
         talkToMe('tab Pressed!')
 
     elif 'keyboard previous' in command:
         pyautogui.typewrite(['shift','tab'],1)
+        lastCommand=command
         talkToMe('Shift-tab Pressed!')
 
     elif 'pause youtube' in command:
         pyautogui.typewrite(['k'],1)
+        lastCommand=command
         talkToMe('K Pressed!')
 
     elif 'youtube' in command:
@@ -224,16 +267,19 @@ def assistant(command):
             domain = reg_ex.group(1)
             url = 'https://www.youtube.com/results?search_query=' + domain
             webbrowser.open(url)
+            lastCommand=command
             print('Done!')
         else:
             pass
 
     elif 'close window' in command:
         pyautogui.hotkey('alt','f4')
+        lastCommand=command
         talkToMe('Alt-F4 Pressed!')
 
 
     elif 'what\'s up' in command:
+        lastCommand=command
         talkToMe('Just doing my thing')
     elif 'joke' in command:
         res = requests.get(
@@ -242,6 +288,7 @@ def assistant(command):
                 )
         if res.status_code == requests.codes.ok:
             talkToMe(str(res.json()['joke']))
+            lastCommand=command
         else:
             talkToMe('oops!I ran out of jokes')
 
@@ -252,6 +299,7 @@ def assistant(command):
             weather = Weather()
             location = weather.lookup_by_location(city)
             condition = location.condition()
+            lastCommand=command
             talkToMe('The Current weather in %s is %s The tempeture is %.1f degree' % (city, condition.text(), (int(condition.temp())-32)/1.8))
 
     elif 'weather forecast in' in command:
@@ -264,7 +312,7 @@ def assistant(command):
             for i in range(0,3):
                 talkToMe('On %s will it %s. The maximum temperture will be %.1f degree.'
                          'The lowest temperature will be %.1f degrees.' % (forecasts[i].date(), forecasts[i].text(), (int(forecasts[i].high())-32)/1.8, (int(forecasts[i].low())-32)/1.8))
-
+            lastCommand=command
 
     elif 'email' in command:
         talkToMe('Who is the recipient?')
@@ -293,13 +341,23 @@ def assistant(command):
             mail.close()
 
             talkToMe('Email sent.')
+            lastCommand=command
 
         else:
             talkToMe('I don\'t know what you mean!')
+    return lastCommand
 
 
 talkToMe('I am ready for your command')
 
 #loop to continue executing multiple commands
+lastCommand='No previous command'
 while True:
-    assistant(myCommand())
+    lastCommand=assistant(myCommand(),lastCommand)
+
+
+
+
+
+
+
