@@ -45,6 +45,15 @@ def myCommand():
 
     return command
 
+def windowChanging(command,selected):
+    if 'select' in command:
+        pyautogui.keyUp('alt')  
+        return True
+    elif 'next' in command:
+        pyautogui.typewrite(['tab'],0.2)
+    else:
+        return False   
+
 
 def assistant(command,lastCommand):
     "if statements for executing commands"
@@ -130,6 +139,19 @@ def assistant(command,lastCommand):
             lastCommand=command
         else:
             pass
+
+    elif 'window change' in command:
+        pyautogui.keyDown('alt')
+        time.sleep(3)
+#        print('timer over')
+        pyautogui.typewrite(['tab'],0.2)
+#        time.sleep(3)        
+        selected=False
+        while selected != True:
+            selected=windowChanging(myCommand(),selected)
+#            print('in while loop')
+        print('Window Changed!')
+        lastCommand=command
 
     
     elif 'keyboard' in command:
@@ -351,6 +373,7 @@ def assistant(command,lastCommand):
             talkToMe('I don\'t know what you mean!')
     return lastCommand
 
+    
 
 talkToMe('I am ready for your command')
 
