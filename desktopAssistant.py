@@ -63,13 +63,27 @@ def wikipediaChosePage(command, pagesList):
 #             print('chosen number is'+ str(chosenOption))
 #             print('Daaaayum'+ command)
              print(pagesList[chosenOption])
-             print(wikipedia.page(pagesList[chosenOption]).summary)
+#             print(wikipedia.page(pagesList[chosenOption]).summary)
              print('\n'+'jobzdon!')
+             chosenOutput= str(wikipedia.page(pagesList[chosenOption]).summary)
+             chosenOutput=chosenOutput.replace('"','')
+             chosenOutput=chosenOutput.replace('(','')
+             chosenOutput=chosenOutput.replace(')','')
+             chosenOutput=chosenOutput.replace(';','')
+#             chosenOutput2=''+chosenOutput
+#             print(chosenOutput)    
+             talkToMe(chosenOutput)
              return True
         except:
             print('Chosen invalid index number')
             #listen again for index
        
+def talkToMeV2 (someString):
+    someString=someString.replace('"','')
+    someString=someString.replace('(','')
+    someString=someString.replace(')','')
+    someString=someString.replace(';','')
+    talkToMe(someString)
 
 
 def assistant(command,lastCommand):
@@ -154,10 +168,14 @@ def assistant(command,lastCommand):
             mylist=wikipedia.search(domain)
 #            print(*mylist,sep='\n')
             for number, letter in enumerate(mylist):
-                print(number, letter)
+#                print(number, letter)
+                listOut=str(str(number)+letter )            
+                talkToMeV2(listOut)
+
             
             print('\n'+'Chose number representing page.')
             print('\n'+'Say /wikipedia exit/ to exit selection.')
+
             while (True):
                 if wikipediaChosePage(myCommand(),mylist)==True:
                     break
