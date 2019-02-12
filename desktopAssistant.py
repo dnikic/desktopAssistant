@@ -8,7 +8,7 @@ import requests
 from weather import Weather
 import pyautogui
 import time
-
+import wikipedia
 
 def talkToMe(audio):
     "speaks audio passed as argument"
@@ -52,7 +52,24 @@ def windowChanging(command,selected):
     elif 'next' in command:
         pyautogui.typewrite(['tab'],0.2)
     else:
-        return False   
+        return False
+
+def wikipediaChosePage(command, pagesList):
+    if command =="wikipedia exit":
+        return True 
+    else:
+        try:
+             chosenOption= int(command)
+#             print('chosen number is'+ str(chosenOption))
+#             print('Daaaayum'+ command)
+             print(pagesList[chosenOption])
+             print(wikipedia.page(pagesList[chosenOption]).summary)
+             print('\n'+'jobzdon!')
+             return True
+        except:
+            print('Chosen invalid index number')
+            #listen again for index
+       
 
 
 def assistant(command,lastCommand):
@@ -127,6 +144,26 @@ def assistant(command,lastCommand):
             webbrowser.open(url)
             lastCommand=command
             print('Done!')
+        else:
+            pass
+
+    elif 'wikipedia search' in command:
+        reg_ex = re.search('wikipedia search (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+            mylist=wikipedia.search(domain)
+#            print(*mylist,sep='\n')
+            for number, letter in enumerate(mylist):
+                print(number, letter)
+            
+            print('\n'+'Chose number representing page.')
+            print('\n'+'Say /wikipedia exit/ to exit selection.')
+            while (True):
+                if wikipediaChosePage(myCommand(),mylist)==True:
+                    break
+            print('Wikipedia Done!')
+#           lastCommand=command
+            
         else:
             pass
 
