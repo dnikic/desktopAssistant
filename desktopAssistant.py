@@ -9,6 +9,8 @@ from weather import Weather
 import pyautogui
 import time
 import wikipedia
+import customScript1
+import customScript2
 
 def talkToMe(audio):
     "speaks audio passed as argument"
@@ -192,6 +194,21 @@ def assistant(command,lastCommand):
             pyautogui.typewrite(''+domain,0.1)
             print('Written!')
             lastCommand=command
+        else:
+            pass
+    elif 'custom script' in command:
+        reg_ex = re.search('custom script (.+)', command)
+        if reg_ex:
+            domain = reg_ex.group(1)
+#            print(domain)
+#            customScript1.main()
+            if domain=='first':
+                customScript1.main()            
+            elif domain=='second':
+                customScript2.main()   
+            else:
+#                print('No such script')                     
+                talkToMeV2('No such script')                                     
         else:
             pass
 
