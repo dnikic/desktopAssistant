@@ -87,6 +87,12 @@ def talkToMeV2 (someString):
     someString=someString.replace(';','')
     talkToMe(someString)
 
+def assistantPause(command):
+    if 'assistant continue' in command:
+        return True
+    else:
+        return False
+
 
 def assistant(command,lastCommand):
     "if statements for executing commands"
@@ -375,6 +381,13 @@ def assistant(command,lastCommand):
         lastCommand=command
         talkToMe('Alt-F4 Pressed!')
 
+    elif 'assistant stop' in command:
+        talkToMe('Asistant paused')
+        while True:
+            if assistantPause(myCommand())==True:
+                break
+        talkToMe('Asistant continued')
+
 
     elif 'what\'s up' in command:
         lastCommand=command
@@ -440,6 +453,7 @@ def assistant(command,lastCommand):
 
             talkToMe('Email sent.')
             lastCommand=command
+
 
         else:
             talkToMe('I don\'t know what you mean!')
