@@ -122,7 +122,7 @@ def assistant(command,lastCommand):
             while counter>0:
                 assistant(lastCommand,lastCommand)
                 counter=counter-1
-            lastCommand=command
+#            lastCommand=command
         else:
             pass
 
