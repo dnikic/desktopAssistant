@@ -9,6 +9,7 @@ from weather import Weather
 import pyautogui
 import time
 import wikipedia
+import pyperclip
 import customScript1
 import customScript2
 
@@ -510,6 +511,12 @@ def assistant(command,lastCommand):
         pyautogui.mouseUp(pyautogui.position(), button='middle')
 #        lastCommand=command   
 
+
+    elif 'read copied' in command:
+        pasted = pyperclip.paste()
+        str(pasted)
+        talkToMeV2(pasted)
+        lastCommand=command   
 
 
     elif 'what\'s up' in command:
