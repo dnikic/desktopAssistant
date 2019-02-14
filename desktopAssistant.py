@@ -388,6 +388,129 @@ def assistant(command,lastCommand):
                 break
         talkToMe('Asistant continued')
 
+    elif 'cursor small move right' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(maxX/200, 0, duration=0.2)
+        lastCommand=command
+    elif 'cursor medium move right' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(maxX/50, 0, duration=0.2)
+        lastCommand=command
+    elif 'cursor large move right' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(maxX/10, 0, duration=0.2)
+        lastCommand=command
+
+    elif 'cursor small move left' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(-maxX/200, 0, duration=0.2)
+        lastCommand=command
+    elif 'cursor medium move left' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(-maxX/50, 0, duration=0.2)
+        lastCommand=command
+    elif 'cursor large move left' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(-maxX/10, 0, duration=0.2)
+        lastCommand=command
+
+    elif 'cursor small move sky' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(0,-maxY/200, duration=0.2)
+        lastCommand=command
+    elif 'cursor medium move sky' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(0,-maxY/50, duration=0.2)
+        lastCommand=command
+    elif 'cursor large move sky' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(0,-maxY/10, duration=0.2)
+        lastCommand=command
+    elif 'cursor small move down' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(0,maxY/200, duration=0.2)
+        lastCommand=command
+    elif 'cursor medium move down' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(0,maxY/50, duration=0.2)
+        lastCommand=command
+    elif 'cursor large move down' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveRel(0,maxY/10, duration=0.2)
+        lastCommand=command
+
+    elif 'screen centre' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveTo(maxX/2, maxY/2)
+        lastCommand=command
+    elif 'screen origin' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.moveTo(maxX/200, maxY/200)
+        lastCommand=command
+
+    elif 'cursor click' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.click(pyautogui.position())
+        lastCommand=command
+    elif 'cursor double click' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.doubleClick(pyautogui.position())
+        lastCommand=command
+    elif 'cursor triple click' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.tripleClick(pyautogui.position())
+        lastCommand=command
+    elif 'cursor right click' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.rightClick(pyautogui.position())
+        lastCommand=command
+    elif 'cursor middle click' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.middleClick(pyautogui.position())
+        lastCommand=command  
+
+    elif 'cursor down' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.mouseDown(pyautogui.position(), button='left')
+#        lastCommand=command 
+    elif 'cursor lift' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.mouseUp(pyautogui.position(), button='left')
+#        lastCommand=command   
+
+    elif 'cursor middle down' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.mouseDown(pyautogui.position(), button='middle')
+#        lastCommand=command 
+    elif 'cursor middle lift' in command:
+        maxX,maxY=pyautogui.size()
+        print(maxX,maxY)
+        pyautogui.mouseUp(pyautogui.position(), button='middle')
+#        lastCommand=command   
+
+
 
     elif 'what\'s up' in command:
         lastCommand=command
@@ -452,7 +575,7 @@ def assistant(command,lastCommand):
             mail.close()
 
             talkToMe('Email sent.')
-            lastCommand=command
+
 
 
         else:
