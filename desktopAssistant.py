@@ -389,6 +389,11 @@ def assistant(command,lastCommand):
                 break
         talkToMe('Asistant continued')
 
+    elif 'assistant exit' in command:
+        talkToMe('Asistant exiting')
+        lastCommand=command
+
+
     elif 'cursor small move right' in command:
         maxX,maxY=pyautogui.size()
         print(maxX,maxY)
@@ -597,6 +602,11 @@ talkToMe('I am ready for your command')
 lastCommand='No previous command'
 while True:
     lastCommand=assistant(myCommand(),lastCommand)
+    if lastCommand=='assistant exit':
+        pyautogui.mouseUp(pyautogui.position(), button='left')
+        pyautogui.mouseUp(pyautogui.position(), button='right')
+        pyautogui.mouseUp(pyautogui.position(), button='middle')
+        break
 
 
 
