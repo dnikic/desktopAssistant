@@ -28,6 +28,8 @@ def talkToMe(audio):
 
 def myCommand():
     "listens for commands"
+    if guiStopApp==True:
+        return 'assistant exit'
 
     r = sr.Recognizer()
 
@@ -390,7 +392,7 @@ def assistant(command,lastCommand):
         talkToMe('Asistant continued')
 
     elif 'assistant exit' in command:
-        talkToMe('Asistant exiting')
+        talkToMe('Asistant exiting, be patient please.')
         lastCommand=command
 
 
@@ -594,20 +596,21 @@ def assistant(command,lastCommand):
             talkToMe('I don\'t know what you mean!')
     return lastCommand
 
-    
-
-talkToMe('I am ready for your command')
-
-#loop to continue executing multiple commands
 lastCommand='No previous command'
-while True:
-    lastCommand=assistant(myCommand(),lastCommand)
-    if lastCommand=='assistant exit':
-        pyautogui.mouseUp(pyautogui.position(), button='left')
-        pyautogui.mouseUp(pyautogui.position(), button='right')
-        pyautogui.mouseUp(pyautogui.position(), button='middle')
-        break
+stopApp=False
+    
+def main():
+    talkToMe('I am ready for your command')
 
+    #loop to continue executing multiple commands
+    global lastCommand
+    while not lastCommand=='assistant exit':
+        lastCommand=assistant(myCommand(),lastCommand)
+    pyautogui.mouseUp(pyautogui.position(), button='left')
+    pyautogui.mouseUp(pyautogui.position(), button='right')
+    pyautogui.mouseUp(pyautogui.position(), button='middle')
+    talkToMe('Asistant exited, you may quit.')
+    print('Assistant off')
 
 
 
