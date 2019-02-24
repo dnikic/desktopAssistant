@@ -345,6 +345,10 @@ def assistant(command,lastCommand):
         else:
             pass
 
+    elif 'blender light rotate' in command:
+        pyautogui.hotkey('ctrl','shift','q')
+        print('Ctrl-Shift-Q hotkey Pressed!')
+        lastCommand=command    
 
     elif 'pause toggle' in command:
         pyautogui.typewrite(['space'],1)
